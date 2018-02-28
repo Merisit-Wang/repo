@@ -1,0 +1,9 @@
+#ifndef INCL_DCM_H040257C9_7F0D_49D6_879A_6382BCEA8F4F
+#define INCL_DCM_H040257C9_7F0D_49D6_879A_6382BCEA8F4F
+
+#define REPO_NS repo
+#define REPO_NS_BEGIN namespace REPO_NS {
+#define REPO_NS_END }
+#define USING_REPO_NS using namespace REPO_NS;
+
+#endif

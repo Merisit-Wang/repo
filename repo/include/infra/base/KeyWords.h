@@ -1,0 +1,7 @@
+#ifndef INCL_DCM_H8390F8FB_97A3_44D5_9088_A3CD024B2B45
+#define INCL_DCM_H8390F8FB_97A3_44D5_9088_A3CD024B2B45
+
+#define ABSTRACT(...) virtual __VA_ARGS__ = 0
+#define OVERRIDE(...) virtual __VA_ARGS__ override
+
+#endif
