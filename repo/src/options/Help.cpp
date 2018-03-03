@@ -1,4 +1,3 @@
-#include "options/Help.h"
 #include <stdio.h>
 #include "options/AutoOption.h"
 

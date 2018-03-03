@@ -48,6 +48,11 @@ namespace
 FIXTURE(FtCmdLine)
 {
 
+    TEST("static test")
+    {
+
+    }
+
     TEST("--help")
     {
         CmdLine cmdLine = CmdLineFactory().createWith("repo --help");

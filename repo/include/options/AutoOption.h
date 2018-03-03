@@ -24,7 +24,7 @@ private:
 
 #define DEFINE_OPTION(type) \
 struct type;\
-static REPO_NS::AutoOption<type> type__LINE__;\
+static AutoOption<type> type__LINE__;\
 struct type : Option
 
 REPO_NS_END
