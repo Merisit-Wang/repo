@@ -1,3 +1,5 @@
+project(repo-test)
+
 FILE(GLOB_RECURSE all_files
 *.cpp
 *.cc
@@ -6,4 +8,4 @@ FILE(GLOB_RECURSE all_files
 *.C)
 
 add_executable(repo-test ${all_files})
-target_link_libraries(repo-test repo cut)
+target_link_libraries(repo-test cut)

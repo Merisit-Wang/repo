@@ -5,15 +5,11 @@ REPO_NS_BEGIN
 
 namespace
 {
-    struct RepoRuntimeImpl : CmdLineRunner
-                           , CmdLineParser
-                           , OptionFactory
+    struct RepoRuntimeImpl : OptionFactory
                            , RepoRuntime
     {
 
     private:
-        IMPL_ROLE(CmdLineRunner);
-        IMPL_ROLE(CmdLineParser);
         IMPL_ROLE(OptionFactory);
     };
 }

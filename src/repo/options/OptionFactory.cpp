@@ -1,5 +1,6 @@
 #include "options/OptionFactory.h"
-#include "options/AutoOptionFactory.h"
+#include "options/Option.h"
+#include "options/OptionMake.h"
 
 REPO_NS_BEGIN
 

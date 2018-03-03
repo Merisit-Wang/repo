@@ -3,13 +3,13 @@
 
 #include "infra/base/repo.h"
 #include "RepoRuntime.h"
-#include "options/Option.h"
+#include "options/auto/AutoOptionFactory.h"
+
 #include <stdio.h>
-#include "options/AutoOptionFactory.h"
 
 REPO_NS_BEGIN
 
-template < typename OPTION >
+template <typename OPTION>
 struct AutoOption
 {
     AutoOption()
@@ -21,11 +21,6 @@ struct AutoOption
 private:
     AutoOptionFactory<OPTION> opt;
 };
-
-#define DEFINE_OPTION(type) \
-struct type;\
-static AutoOption<type> type__LINE__;\
-struct type : Option
 
 REPO_NS_END
 

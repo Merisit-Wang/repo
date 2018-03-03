@@ -4,8 +4,6 @@
 #include "infra/base/repo.h"
 #include "infra/dci/role.h"
 #include <string>
-#include "cmd-line/CmdLineRunner.h"
-#include "cmd-line/CmdLineParser.h"
 #include "options/OptionFactory.h"
 
 REPO_NS_BEGIN
@@ -14,8 +12,6 @@ DEFINE_ROLE(RepoRuntime)
 {
     static RepoRuntime& getInstance();
 
-    HAS_ROLE(CmdLineRunner);
-    HAS_ROLE(CmdLineParser);
     HAS_ROLE(OptionFactory);
 };
 

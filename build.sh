@@ -8,5 +8,5 @@ cd cmake-build
 cmake ..
 make -j20
 
-cd test
+cd src
 ./repo-test
