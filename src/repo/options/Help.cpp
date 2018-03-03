@@ -3,15 +3,12 @@
 
 REPO_NS_BEGIN
 
-struct Help;
-static AutoOption<Help> help;
-struct Help : Option
+DEFINE_OPTION(Help)
 {
     Help() : shortOpt("-h")
-                             , longOpt("--help")
-                             , description("show help")
+         , longOpt("--help")
+         , description("show help")
     {
-        printf("=====>help create\n");
     }
 
 private:
