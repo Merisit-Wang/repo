@@ -4,6 +4,9 @@
 #include "infra/base/repo.h"
 #include "infra/dci/role.h"
 #include <string>
+#include "cmd-line/CmdLineRunner.h"
+#include "cmd-line/CmdLineParser.h"
+#include "options/OptionFactory.h"
 
 REPO_NS_BEGIN
 
@@ -11,10 +14,12 @@ DEFINE_ROLE(RepoRuntime)
 {
     static RepoRuntime& getInstance();
 
-    ABSTRACT(void run(std::string cmd));
+    HAS_ROLE(CmdLineRunner);
+    HAS_ROLE(CmdLineParser);
+    HAS_ROLE(OptionFactory);
 };
 
-#define REPO_RUNTIME(cmd) RepoRuntime::getInstance().run(cmd);
+#define REPO_RUNTIME(type) RepoRuntime::getInstance().ROLE(type)
 
 REPO_NS_END
 

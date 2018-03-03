@@ -5,14 +5,16 @@ REPO_NS_BEGIN
 
 namespace
 {
-    struct RepoRuntimeImpl : RepoRuntime
+    struct RepoRuntimeImpl : CmdLineRunner
+                           , CmdLineParser
+                           , OptionFactory
+                           , RepoRuntime
     {
 
     private:
-        OVERRIDE(void run(std::string cmd))
-        {
-            std::cout << cmd << std::endl;
-        }
+        IMPL_ROLE(CmdLineRunner);
+        IMPL_ROLE(CmdLineParser);
+        IMPL_ROLE(OptionFactory);
     };
 }
 
