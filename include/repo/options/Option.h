@@ -9,7 +9,7 @@ REPO_NS_BEGIN
 
 DEFINE_ROLE(Option)
 {
-    ABSTRACT(int exec());
+    ABSTRACT(int exec(std::string gitCmd));
     ABSTRACT(bool match(std::string option) const);
 };
 

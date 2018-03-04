@@ -3,6 +3,9 @@
 
 #include "ftesting/ftesting.h"
 #include "cut/cut.hpp"
+#include "cum/core/def/IsDef.h"
+
+USING_CUM_NS
 
 FTESTING_NS_BEGIN
 

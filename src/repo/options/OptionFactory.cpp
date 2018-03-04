@@ -9,9 +9,14 @@ void OptionFactory::addOption(OptionMake& option)
     options.insert(&option);
 }
 
-std::set<OptionMake*> OptionFactory::getOptionList()
+Option* OptionFactory::makeOption(std::string expect)
 {
-    return options;
+    for (auto opt : options)
+    {
+        Option* option = opt->make();
+        if (option->match(expect)) return option;
+    }
+    return 0;
 }
 
 REPO_NS_END

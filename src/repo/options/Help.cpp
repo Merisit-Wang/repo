@@ -12,7 +12,7 @@ DEFINE_OPTION(Help)
     }
 
 private:
-    OVERRIDE(int exec())
+    OVERRIDE(int exec(std::string gitCmd))
     {
         show();
         return 0;

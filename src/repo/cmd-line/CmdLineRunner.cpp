@@ -8,20 +8,13 @@ REPO_NS_BEGIN
 
 int CmdLineRunner::run()
 {
-    Option* option = findOption();
-    if (option == 0) return 1;
-    return option->exec();
+    Option* opt = findOption();
+    return opt == 0 ? 1 : opt->exec(ROLE(CmdLineParser).getGitCmd());
 }
 
 Option* CmdLineRunner::findOption() const
 {
-    std::string expect = ROLE(CmdLineParser).getOption();
-    for (auto opt : ROLE(OptionFactory).getOptionList())
-    {
-        Option* createdOption = opt->make();
-        if (createdOption->match(expect)) return createdOption;
-    }
-    return 0;
+    return ROLE(OptionFactory).makeOption(ROLE(CmdLineParser).getOption());
 }
 
 REPO_NS_END

@@ -11,10 +11,8 @@ struct CmdLine;
 
 DEFINE_ROLE(CmdLineParser)
 {
-    CmdLineParser();
-
     std::string getOption() const;
-    std::string getGidCmd() const;
+    std::string getGitCmd() const;
 
     void parse(const CmdLine& cmdLine);
 

@@ -5,15 +5,17 @@
 #include "infra/dci/role.h"
 
 #include <set>
+#include <string>
 
 REPO_NS_BEGIN
 
 struct OptionMake;
+struct Option;
 
 DEFINE_ROLE(OptionFactory)
 {
     void addOption(OptionMake&);
-    std::set<OptionMake*> getOptionList();
+    Option* makeOption(std::string);
 
 private:
     std::set<OptionMake*> options;
