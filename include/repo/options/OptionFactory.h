@@ -11,14 +11,19 @@ REPO_NS_BEGIN
 
 struct OptionMake;
 struct Option;
+struct OptionDescription;
 
 DEFINE_ROLE(OptionFactory)
 {
     void addOption(OptionMake&);
+    void addDescription(OptionDescription&);
+
     Option* makeOption(std::string);
+    std::set<OptionDescription*> getDescripions();
 
 private:
     std::set<OptionMake*> options;
+    std::set<OptionDescription*> desc;
 };
 
 REPO_NS_END

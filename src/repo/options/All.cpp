@@ -5,15 +5,12 @@
 
 REPO_NS_BEGIN
 
-DEFINE_OPTION(Null, "", "", "")
+DEFINE_OPTION(All, "-a", "--all", "run git cmd in each git repo")
 
 private:
     OVERRIDE(int run(std::string gitCmd))
     {
-        if (gitCmd.empty()) return REPO_RUNTIME(CmdLineRunner).run();
-
-        std::string cmd = "git " + gitCmd;
-        return system(cmd.c_str());
+        return 0;
     }
 
 END_DEFINE()

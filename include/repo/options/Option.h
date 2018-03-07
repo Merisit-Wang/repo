@@ -13,6 +13,24 @@ DEFINE_ROLE(Option)
     ABSTRACT(bool match(std::string option) const);
 };
 
+//////////////////////////////////////////////////////////////////////////
+struct OptionDescription;
+
+struct CommonOption : Option
+{
+    CommonOption(OptionDescription& desc);
+
+private:
+    OVERRIDE(int exec(std::string gitCmd));
+    OVERRIDE(bool match(std::string option) const);
+
+private:
+    ABSTRACT(int run(std::string gitCmd));
+
+private:
+    const OptionDescription& desc;
+};
+
 REPO_NS_END
 
 #endif

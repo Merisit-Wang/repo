@@ -1,43 +1,82 @@
-#include <stdio.h>
 #include "options/auto/AutoOption.h"
+#include "RepoRuntime.h"
+
+#include <stdio.h>
+#include <iostream>
+#include <set>
 
 REPO_NS_BEGIN
 
-DEFINE_OPTION(Help)
+namespace
 {
-    Help() : shortOpt("-h")
-         , longOpt("--help")
-         , description("show help")
+    struct DescriptionFromat
     {
-    }
+        DescriptionFromat() : maxSize(0)
+        {
+            maxOptionLen();
+            saveFromatDesc();
+        }
+
+        void dump() const
+        {
+            for (auto str : fromats)
+            {
+                std::cout << str << std::endl;
+            }
+        }
+    private:
+        void maxOptionLen()
+        {
+            for (auto desc : REPO_RUNTIME(OptionFactory).getDescripions())
+            {
+                std::string option = desc->getShortOpt() + "," + desc->getLongOpt();
+                if (maxSize < option.size()) maxSize = option.size();
+            }
+        }
+
+        void saveFromatDesc()
+        {
+            for (auto desc : REPO_RUNTIME(OptionFactory).getDescripions())
+            {
+                std::string format = "    ";
+                std::string blank = "";
+                format += desc->getShortOpt() + "," + desc->getLongOpt();
+                for (int i = 0; i < (maxSize + 4 - format.size()); i++)
+                {
+                    blank += " ";
+                }
+                format += blank + "    " + desc->getDescription();
+                fromats.insert(format);
+            }
+        }
+
+    private:
+        std::set<std::string> fromats;
+        int maxSize;
+    };
+}
+
+DEFINE_OPTION(Help, "-h", "--help", "show help")
 
 private:
-    OVERRIDE(int exec(std::string gitCmd))
+    OVERRIDE(int run(std::string gitCmd))
     {
         show();
         return 0;
     }
 
-    OVERRIDE(bool match(std::string option) const)
-    {
-        if (option == shortOpt || option == longOpt) return true;
-        return false;
-    }
-
 private:
     void show()
     {
-        printf("USAGE:\n");
-        printf("    repo <option> [git command]\n");
-        printf("\n");
-        printf("OPTIONS:\n");
-        printf("    --help, -h     show help\n");
+        std::cout << "USAGE:"                          << std::endl;
+        std::cout << "    repo <option> [git command]" << std::endl;
+        std::cout << " "                               << std::endl;
+        std::cout << "OPTIONS:"                        << std::endl;
+        std::cout << " "                               << std::endl;
+        static DescriptionFromat fromat;
+        fromat.dump();
     }
 
-private:
-    std::string shortOpt;
-    std::string longOpt;
-    std::string description;
-};
+END_DEFINE()
 
 REPO_NS_END

@@ -4,6 +4,7 @@
 #include "infra/base/repo.h"
 #include "RepoRuntime.h"
 #include "options/auto/AutoOptionFactory.h"
+#include "options/OptionDescription.h"
 
 REPO_NS_BEGIN
 
@@ -21,10 +22,15 @@ private:
 
 #define LINE(type, line) type##line
 
-#define DEFINE_OPTION(type) \
+#define DEFINE_OPTION(type, shortOpt, longOpt, description) \
 struct type; \
 static AutoOption<type> LINE(type, __LINE__); \
-struct type : Option
+static OptionDescription type##_description(shortOpt, longOpt, description); \
+struct type : CommonOption \
+{ \
+    type() : CommonOption(type##_description) {}; \
+
+#define END_DEFINE() };
 
 REPO_NS_END
 

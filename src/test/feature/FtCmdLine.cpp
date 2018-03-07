@@ -32,8 +32,4 @@ void CmdLineFactory::converToStringVector(const char* args)
     }
 }
 
-FIXTURE(FtCmdLine)
-{
-};
-
 FTESTING_NS_END
