@@ -1,6 +1,6 @@
 #include "ftesting/FtFixture.h"
 #include "feature/FtCmdLine.h"
-#include "RepoRuntime.h"
+#include "runtime/RepoRuntime.h"
 
 USING_REPO_NS
 

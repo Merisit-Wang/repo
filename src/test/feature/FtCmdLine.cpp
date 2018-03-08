@@ -1,5 +1,5 @@
 #include "ftesting/FtFixture.h"
-#include "RepoRuntime.h"
+#include "runtime/RepoRuntime.h"
 #include "feature/FtCmdLine.h"
 
 #include <string>

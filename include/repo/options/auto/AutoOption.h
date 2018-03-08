@@ -2,7 +2,7 @@
 #define INCL_REPO_H49606200_9639_4AC2_BEFF_2594ACCBBCEF
 
 #include "infra/base/repo.h"
-#include "RepoRuntime.h"
+#include "runtime/RepoRuntime.h"
 #include "options/auto/AutoOptionFactory.h"
 #include "options/OptionDescription.h"
 
