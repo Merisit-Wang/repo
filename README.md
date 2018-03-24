@@ -1,9 +1,12 @@
-Build test:
+#Repo
+
+###Build install:
+
+    ./build.sh install
+    
+NOTE: might be ask for root password.
+
+###Build test:
 
 	./build.sh
 
-Build install:
-
-	./build install
-
-NOTE: might be ask for root password.
