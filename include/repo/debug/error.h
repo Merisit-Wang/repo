@@ -1,0 +1,13 @@
+#ifndef INCL_REPO_H80075AD6_E861_47CD_A908_37423ADE9B29
+#define INCL_REPO_H80075AD6_E861_47CD_A908_37423ADE9B29
+
+#include "infra/base/repo.h"
+
+REPO_NS_BEGIN
+
+#define REPO_SUCCESS    0
+#define REPO_ERROR      -1
+
+REPO_NS_END
+
+#endif
