@@ -1,6 +1,6 @@
 #include "ftesting/FtFixture.h"
 #include "runtime/RepoRuntime.h"
-#include "feature/FtCmdLine.h"
+#include "ft_env/FtCmdLine.h"
 
 #include <string>
 #include <sstream>
@@ -42,6 +42,11 @@ void CmdLineFactory::converToStringVector(const char* args)
         stream >> str;
         strings.push_back(str);
     }
+}
+
+CmdLine createCmd(const char* args)
+{
+    return CmdLineFactory().createWith(args);
 }
 
 FTESTING_NS_END

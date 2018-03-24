@@ -13,6 +13,7 @@ REPO_NS_BEGIN
 DEFINE_ROLE(RepoRuntime)
 {
     static RepoRuntime& getInstance();
+    ABSTRACT(int run(const CmdLine& cmdLine));
 
     HAS_ROLE(CmdLineRunner);
     HAS_ROLE(CmdLineParser);
@@ -20,6 +21,7 @@ DEFINE_ROLE(RepoRuntime)
 };
 
 #define REPO_RUNTIME(type) RepoRuntime::getInstance().ROLE(type)
+#define REPO_RUN(cmd) RepoRuntime::getInstance().run(cmd)
 
 REPO_NS_END
 

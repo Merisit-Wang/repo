@@ -15,6 +15,13 @@ namespace
         IMPL_ROLE(CmdLineRunner);
         IMPL_ROLE(CmdLineParser);
         IMPL_ROLE(OptionFactory);
+
+    private:
+        OVERRIDE(int run(const CmdLine& cmdLine))
+        {
+            ROLE(CmdLineParser).parse(cmdLine);
+            return ROLE(CmdLineRunner).run();
+        }
     };
 }
 

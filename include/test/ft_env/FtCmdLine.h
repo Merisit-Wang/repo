@@ -22,6 +22,8 @@ private:
     char* argv[MAX_CMD_LINE_ARGS] = {0};
 };
 
+CmdLine createCmd(const char* args);
+
 FTESTING_NS_END
 
 #endif

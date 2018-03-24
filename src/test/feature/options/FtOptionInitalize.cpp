@@ -1,7 +1,9 @@
 #include "ftesting/FtFixture.h"
-#include "feature/FtCmdLine.h"
+#include "ft_env/FtCmdLine.h"
+#include "ft_env/FtEnv.h"
 #include "runtime/RepoRuntime.h"
-#include "../../../../include/repo/system/Dir.h"
+#include "system/Dir.h"
+#include "runtime/Repo.h"
 
 USING_REPO_NS
 
@@ -9,13 +11,21 @@ FTESTING_NS_BEGIN
 
 FIXTURE(FtOptionInitalize)
 {
-    TEST("should create .repo dir")
+    SETUP()
     {
-        CmdLine cmdLine = CmdLineFactory().createWith("repo --init");
-        REPO_RUNTIME(CmdLineParser).parse(cmdLine);
-        REPO_RUNTIME(CmdLineRunner).run();
-        ASSERT_THAT(Dir::hasDir(".repo"), is(true));
-        Dir::rmDir(".repo");
+        FtEnv::init();
+    }
+
+    TEARDOWN()
+    {
+        FtEnv::clean();
+    }
+
+    TEST("should init repo success")
+    {
+        REPO_RUN(createCmd("repo --init"));
+        ASSERT_THAT(Repo::isValid(), is(true));
+        Repo::rmRepo();
     }
 };
 

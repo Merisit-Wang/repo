@@ -1,5 +1,5 @@
 #include "ftesting/FtFixture.h"
-#include "feature/FtCmdLine.h"
+#include "ft_env/FtCmdLine.h"
 #include "runtime/RepoRuntime.h"
 
 USING_REPO_NS
@@ -10,8 +10,7 @@ FIXTURE(FtCmdLineParser)
 {
     void given_cmd(std::string cmd)
     {
-        CmdLine cmdLine = CmdLineFactory().createWith(cmd.c_str());
-        REPO_RUNTIME(CmdLineParser).parse(cmdLine);
+        REPO_RUNTIME(CmdLineParser).parse(createCmd(cmd.c_str()));
     }
 
     void assert_option_cmd(std::string option, std::string cmd)
