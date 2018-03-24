@@ -1,10 +1,8 @@
-===============
-build test:
+Build test:
 
 	./build.sh
 
-===============
-build install:
+Build install:
 
 	./build install
 
