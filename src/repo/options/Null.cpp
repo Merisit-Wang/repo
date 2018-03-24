@@ -1,5 +1,6 @@
 #include "options/auto/AutoOption.h"
 #include "runtime/RepoRuntime.h"
+#include "debug/Log.h"
 
 #include <string>
 
@@ -13,7 +14,18 @@ private:
         if (gitCmd.empty()) return REPO_RUNTIME(CmdLineRunner).run();
 
         std::string cmd = "git " + gitCmd;
-        return system(cmd.c_str());
+        int result = system(cmd.c_str());
+
+        if (result == REPO_SUCCESS)
+        {
+            INFO_LOG("Run < " + cmd + " > done.");
+        }
+        else
+        {
+            ERR_LOG("Run < " + cmd + " > error.");
+        }
+
+        return result;
     }
 
 END_DEFINE()
