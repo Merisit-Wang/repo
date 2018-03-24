@@ -9,7 +9,7 @@ REPO_NS_BEGIN
 int CmdLineRunner::run()
 {
     Option* opt = findOption();
-    return opt == 0 ? 1 : opt->exec(ROLE(CmdLineParser).getGitCmd());
+    return opt == 0 ? -1 : opt->exec(ROLE(CmdLineParser).getGitCmd());
 }
 
 Option* CmdLineRunner::findOption() const

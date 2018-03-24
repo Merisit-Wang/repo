@@ -6,7 +6,7 @@ REPO_NS_BEGIN
 
 int Repo::init()
 {
-    if (!verify())
+    if (!initVerify())
     {
         ERR_LOG("Initialize repository error.");
         return REPO_ERROR;
@@ -28,7 +28,7 @@ void Repo::rmRepo()
     Dir::rmDir(REPO);
 }
 
-bool Repo::verify()
+bool Repo::initVerify()
 {
     return Dir::hasDir(DIR_CPU)
         && Dir::hasDir(DIR_PUB)

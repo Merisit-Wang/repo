@@ -22,7 +22,7 @@ struct Repo
     static void rmRepo();
 
 private:
-    static bool verify();
+    static bool initVerify();
 };
 
 REPO_NS_END
