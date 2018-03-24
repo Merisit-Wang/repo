@@ -15,6 +15,7 @@ DEFINE_ROLE(CmdLineParser)
     std::string getGitCmd() const;
 
     void parse(const CmdLine& cmdLine);
+    void reset();
 
 private:
     std::string option;

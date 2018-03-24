@@ -11,7 +11,7 @@ DEFINE_OPTION(Null, "", "", "")
 private:
     OVERRIDE(int run(std::string gitCmd))
     {
-        if (gitCmd.empty()) return REPO_RUNTIME(CmdLineRunner).run();
+        if (gitCmd.empty()) return REPO_SUCCESS;
 
         std::string cmd = "git " + gitCmd;
         int result = system(cmd.c_str());

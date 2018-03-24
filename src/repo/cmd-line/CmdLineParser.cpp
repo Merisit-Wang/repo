@@ -54,4 +54,10 @@ std::string CmdLineParser::getGitCmd() const
     return gitCmd;
 }
 
+void CmdLineParser::reset()
+{
+    option = "--help";
+    gitCmd = "";
+}
+
 REPO_NS_END
