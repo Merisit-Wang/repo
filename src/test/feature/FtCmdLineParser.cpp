@@ -19,6 +19,12 @@ FIXTURE(FtCmdLineParser)
         ASSERT_THAT(REPO_RUNTIME(CmdLineParser).getGitCmd(), is(cmd));
     }
 
+    TEST("repo")
+    {
+        given_cmd("repo");
+        assert_option_cmd("--help", "");
+    }
+
     TEST("--help")
     {
         given_cmd("repo --help");

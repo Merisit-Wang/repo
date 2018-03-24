@@ -10,16 +10,6 @@ FTESTING_NS_BEGIN
 
 FIXTURE(FtRepoRuntime)
 {
-    TEST("run repo status")
-    {
-        ASSERT_THAT(REPO_RUN(createCmd("repo -h")), is(0));
-    }
-
-    TEST("run repo")
-    {
-        ASSERT_THAT(REPO_RUN(createCmd("repo")), is(0));
-    }
-
     TEST("unkown option")
     {
         ASSERT_THAT(REPO_RUN(createCmd("repo --xxx")), is(0));
