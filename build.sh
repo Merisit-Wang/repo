@@ -1,12 +1,27 @@
 #!/bin/bash
 
+arg=$1
+
 if [ ! -d "cmake-build" ]; then
     mkdir -p cmake-build
 fi
 
 cd cmake-build
-cmake ..
+
+if [ "$arg" == "install" ]; then
+    echo "build install"
+    rm -rf *
+    cmake ..
+else
+    echo "build test"
+    cmake .. -DENABLE_TEST=1
+fi
+
 make -j20
 
-cd src
-./repo-test
+if [ "$arg" == "install" ]; then
+    sudo cp src/repo /usr/local/bin 
+else
+    cd src/test
+    ./repo-test
+fi

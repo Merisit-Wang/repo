@@ -1,11 +1,12 @@
-project(repo-test)
-
-FILE(GLOB_RECURSE all_files
-*.cpp
-*.cc
-*.c++
-*.c
-*.C)
-
-add_executable(repo-test ${all_files})
-target_link_libraries(repo-test cut)
+IF (ENABLE_TEST)
+    add_subdirectory(test)
+ELSE()
+    FILE(GLOB_RECURSE all_files
+    repo/*.cpp
+    repo/*.cc
+    repo/*.c++
+    repo/*.c
+    repo/*.C)
+    
+    add_executable(repo main.cpp ${all_files})
+ENDIF()

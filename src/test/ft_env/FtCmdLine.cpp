@@ -42,6 +42,8 @@ void CmdLineFactory::converToStringVector(const char* args)
         stream >> str;
         strings.push_back(str);
     }
+
+    strings.pop_back();
 }
 
 CmdLine createCmd(const char* args)

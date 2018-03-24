@@ -6,7 +6,6 @@ REPO_NS_BEGIN
 CmdLine::CmdLine(int argc, char** argv)
     : args(argv+1, argv+argc+!argc)
 {
-    args.pop_back();
 }
 
 std::vector<std::string> CmdLine::getArgs() const

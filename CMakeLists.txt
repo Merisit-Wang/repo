@@ -8,5 +8,10 @@ include_directories(include/repo)
 include_directories(include/test)
 include_directories(tools/cut/include)
 
-add_subdirectory(tools/cut)
+OPTION(ENABLE_TEST "Build repo test." OFF)
+
 add_subdirectory(src)
+
+IF (ENABLE_TEST)
+    add_subdirectory(tools/cut)
+ENDIF()
