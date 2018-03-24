@@ -13,11 +13,23 @@ CmdLine CmdLineFactory::createWith(const char* args)
     int i = 0;
     for (auto str : strings)
     {
-        argv[i] = (char*)str.c_str();
+        argv[i] = new char[MAX_CMD_LINE_ARGS];
+        strcpy(argv[i], str.c_str());
         i++;
     }
 
-    return CmdLine(i, argv);
+    CmdLine cmd(i, argv);
+    free();
+
+    return cmd;
+}
+
+void CmdLineFactory::free()
+{
+    for (int i = 0; i < MAX_CMD_LINE_ARGS; i++)
+    {
+        if (argv[i] != 0) delete argv[i];
+    }
 }
 
 void CmdLineFactory::converToStringVector(const char* args)

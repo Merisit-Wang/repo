@@ -9,7 +9,7 @@ REPO_NS_BEGIN
 
 struct CmdLine
 {
-    CmdLine(int argc, const char** argv);
+    CmdLine(int argc, char** argv);
 
     std::vector<std::string> getArgs() const;
 

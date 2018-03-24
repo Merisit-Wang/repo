@@ -3,7 +3,7 @@
 
 REPO_NS_BEGIN
 
-CmdLine::CmdLine(int argc, const char** argv)
+CmdLine::CmdLine(int argc, char** argv)
     : args(argv+1, argv+argc+!argc)
 {
     args.pop_back();

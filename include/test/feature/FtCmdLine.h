@@ -14,11 +14,12 @@ struct CmdLineFactory
 
 private:
     void converToStringVector(const char* args);
+    void free();
 
 private:
     std::vector<std::string> strings;
     enum { MAX_CMD_LINE_ARGS = 20 };
-    const char* argv[MAX_CMD_LINE_ARGS];
+    char* argv[MAX_CMD_LINE_ARGS] = {0};
 };
 
 FTESTING_NS_END
