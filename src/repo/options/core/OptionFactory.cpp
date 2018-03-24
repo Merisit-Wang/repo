@@ -1,7 +1,7 @@
-#include "options/OptionFactory.h"
-#include "options/Option.h"
-#include "options/OptionMake.h"
-#include "options/OptionDescription.h"
+#include "options/core/OptionFactory.h"
+#include "options/core/Option.h"
+#include "options/core/OptionMake.h"
+#include "options/core/OptionDescription.h"
 
 REPO_NS_BEGIN
 

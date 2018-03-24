@@ -3,7 +3,7 @@
 
 #include "infra/base/repo.h"
 #include "infra/dci/role.h"
-#include "options/Option.h"
+#include "options/core/Option.h"
 
 REPO_NS_BEGIN
 

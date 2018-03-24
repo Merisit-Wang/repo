@@ -1,5 +1,5 @@
-#include "options/Option.h"
-#include "options/OptionDescription.h"
+#include "options/core/Option.h"
+#include "options/core/OptionDescription.h"
 #include "runtime/RepoRuntime.h"
 
 REPO_NS_BEGIN

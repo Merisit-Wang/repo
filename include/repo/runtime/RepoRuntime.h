@@ -6,7 +6,7 @@
 #include <string>
 #include "cmd-line/CmdLineRunner.h"
 #include "cmd-line/CmdLineParser.h"
-#include "options/OptionFactory.h"
+#include "options/core/OptionFactory.h"
 
 REPO_NS_BEGIN
 

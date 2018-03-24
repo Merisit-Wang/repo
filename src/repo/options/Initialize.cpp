@@ -1,6 +1,6 @@
 #include "options/auto/AutoOption.h"
 #include "runtime/RepoRuntime.h"
-#include "../../../../include/repo/system/Dir.h"
+#include "system/Dir.h"
 #include "debug/Log.h"
 
 #include <string>
