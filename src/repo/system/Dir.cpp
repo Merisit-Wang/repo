@@ -17,7 +17,8 @@ bool Dir::hasDir(std::string dir)
 
 int Dir::mkDir(std::string dir)
 {
-    if (mkdir(dir.c_str(), S_IRWXU|S_IRGRP|S_IXGRP|S_IROTH|S_IXOTH) == REPO_SUCCESS)
+    std::string cmd = "mkdir -p " + dir;
+    if (system(cmd.c_str()) == REPO_SUCCESS)
         return REPO_SUCCESS;
 
     ERR_LOG("Cannot create dir : " + dir);
@@ -43,7 +44,8 @@ int Dir::chDir(std::string dir)
 
 int Dir::rmDir(std::string dir)
 {
-    if (rmdir(dir.c_str()) == REPO_SUCCESS) return REPO_SUCCESS;
+    std::string cmd = "rm -rf " + dir;
+    if (system(cmd.c_str()) == REPO_SUCCESS) return REPO_SUCCESS;
 
     ERR_LOG("Cannot delete dir : " + dir);
     return REPO_ERROR;

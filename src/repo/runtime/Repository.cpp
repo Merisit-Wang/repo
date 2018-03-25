@@ -41,7 +41,12 @@ int Repository::runGitCmd(std::string cmd, std::string runDir)
     std::string gitCmd = "git " + cmd;
     std::string savedDir = Dir::getPwd();
 
-    if (!runDir.empty()) Dir::chDir(runDir);
+    if (!runDir.empty())
+    {
+        if (Dir::chDir(runDir) != REPO_SUCCESS)
+            return REPO_ERROR;
+    }
+
     DBG_LOG("Run < " + gitCmd + " > ...");
     int result = system(gitCmd.c_str());
     Dir::chDir(savedDir);

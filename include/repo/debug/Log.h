@@ -9,10 +9,11 @@ REPO_NS_BEGIN
 
 struct Log
 {
-    static void info(std::string log);
-    static void warn(std::string log);
-    static void err(std::string log);
-    static void dbg(std::string log);
+    static int info(std::string log);
+    static int warn(std::string log);
+    static int err(std::string log);
+    static int dbg(std::string log);
+    static void setLogSwitch(bool on = false);
 };
 
 #define INFO_LOG(log) Log::info(log)
