@@ -1,6 +1,6 @@
 #include "options/auto/AutoOption.h"
 #include "runtime/RepoRuntime.h"
-#include "runtime/Repo.h"
+#include "runtime/Repository.h"
 
 #include <string>
 
@@ -11,7 +11,7 @@ DEFINE_OPTION(Initialize, "-i", "--init", "init repo")
 private:
     OVERRIDE(int run(std::string gitCmd))
     {
-        return Repo::init();
+        return Repository::init();
     }
 
 END_DEFINE()

@@ -18,7 +18,7 @@ struct Log
 #define INFO_LOG(log) Log::info(log)
 #define WARN_LOG(log) Log::warn(log)
 #define ERR_LOG(log) Log::err(log)
-#define DBG_LOG(log) Log::err(log)
+#define DBG_LOG(log) Log::dbg(log)
 
 REPO_NS_END
 

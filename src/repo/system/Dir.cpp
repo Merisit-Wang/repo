@@ -33,6 +33,14 @@ std::string Dir::getPwd()
     return currentDir;
 }
 
+int Dir::chDir(std::string dir)
+{
+    if (!hasDir(dir)) return REPO_ERROR;
+    DBG_LOG("Change dir to : " + dir);
+    if (chdir(dir.c_str()) == REPO_SUCCESS) return REPO_SUCCESS;
+    return REPO_ERROR;
+}
+
 int Dir::rmDir(std::string dir)
 {
     if (rmdir(dir.c_str()) == REPO_SUCCESS) return REPO_SUCCESS;

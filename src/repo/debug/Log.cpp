@@ -4,8 +4,6 @@
 
 REPO_NS_BEGIN
 
-#define fg_blue FOREGROUND_BLUE
-
 void Log::info(std::string log)
 {
     printf("\033[1m\033[42;37mDONE\033[0m %s\n", log.c_str());

@@ -13,6 +13,7 @@ struct Dir
     static int mkDir(std::string dir);
     static std::string getPwd();
     static int rmDir(std::string dir);
+    static int chDir(std::string dir);
 };
 
 REPO_NS_END

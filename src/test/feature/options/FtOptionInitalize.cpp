@@ -3,7 +3,7 @@
 #include "ft_env/FtEnv.h"
 #include "runtime/RepoRuntime.h"
 #include "system/Dir.h"
-#include "runtime/Repo.h"
+#include "runtime/Repository.h"
 
 USING_REPO_NS
 
@@ -24,8 +24,8 @@ FIXTURE(FtOptionInitalize)
     TEST("should init repo success")
     {
         REPO_RUN(createCmd("repo --init"));
-        ASSERT_THAT(Repo::isValid(), is(true));
-        Repo::rmRepo();
+        ASSERT_THAT(Repository::isValid(), is(true));
+        Repository::rmRepo();
     }
 };
 

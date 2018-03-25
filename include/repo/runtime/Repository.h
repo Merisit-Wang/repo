@@ -15,11 +15,12 @@ static std::string DIR_PROJECT = "Project/";
 static std::string DIR_BUILD = "DailyBuild/";
 static std::string REPO = ".repo";
 
-struct Repo
+struct Repository
 {
     static int init();
     static bool isValid();
     static void rmRepo();
+    static int runGitCmd(std::string cmd, std::string runDir = "");
 
 private:
     static bool initVerify();
