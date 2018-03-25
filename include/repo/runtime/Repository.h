@@ -13,7 +13,7 @@ static std::string DIR_SDR = DIR_LTE + "sdr/";
 static std::string DIR_SPS = DIR_LTE + "sps/";
 static std::string DIR_PROJECT = "Project/";
 static std::string DIR_BUILD = "DailyBuild/";
-static std::string REPO = ".repo";
+static std::string DIR_REPO = ".repo/";
 
 struct Repository
 {
@@ -24,7 +24,7 @@ struct Repository
 
 private:
     static void initVerify();
-    static int createConfig();
+    static void createConfig();
 };
 
 REPO_NS_END

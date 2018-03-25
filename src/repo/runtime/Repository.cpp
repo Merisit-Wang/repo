@@ -9,6 +9,9 @@ REPO_NS_BEGIN
 namespace
 {
     static std::string configFileName = "config";
+    static std::string configPath = DIR_REPO + configFileName;
+    static std::string repoRoot = "root=" + Dir::getPwd();
+    static std::string debugSwitch = "debug=0";
 }
 
 int Repository::init()
@@ -16,8 +19,8 @@ int Repository::init()
     try
     {
         initVerify();
-        Dir::mkDir(REPO);
-        File::createFile(configFileName, REPO);
+        Dir::mkDir(DIR_REPO);
+        createConfig();
     }
     catch(ErrorException& ex)
     {
@@ -27,17 +30,20 @@ int Repository::init()
     return INFO_LOG("Initialize repository done.");
 }
 
-int Repository::createConfig()
+void Repository::createConfig()
 {
-
-    return REPO_SUCCESS;
+    File::create(configFileName, DIR_REPO);
+    File::writeLen(configPath, repoRoot);
+    File::writeLen(configPath, debugSwitch);
 }
 
 bool Repository::isValid()
 {
+    std::string repoRoot;
     try
     {
-        Dir::assertDir(REPO);
+        Dir::assertDir(DIR_REPO);
+        repoRoot = File::readLen(configPath);
     }
     catch(ErrorException& ex)
     {
@@ -45,12 +51,14 @@ bool Repository::isValid()
         return false;
     }
 
+    if (repoRoot.erase(0, 5) != Dir::getPwd()) return false;
+
     return true;
 }
 
 void Repository::rmRepo()
 {
-    Dir::rmDir(REPO);
+    Dir::rmDir(DIR_REPO);
 }
 
 void Repository::initVerify()

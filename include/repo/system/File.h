@@ -8,7 +8,9 @@ REPO_NS_BEGIN
 
 struct File
 {
-    static void createFile(std::string fileName, std::string dir = "");
+    static void create(std::string fileName, std::string dir = "");
+    static void writeLen(std::string fileDir, std::string len);
+    static std::string readLen(std::string fileDir);
 };
 
 REPO_NS_END
