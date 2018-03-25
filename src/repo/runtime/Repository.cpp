@@ -13,29 +13,18 @@ namespace
 
 int Repository::init()
 {
-    if (!initVerify())
-    {
-        ERR_LOG("Initialize repository error.");
-        return REPO_ERROR;
-    }
-
-    if (Dir::mkDir(REPO) != REPO_SUCCESS) return REPO_ERROR;
-
-    std::string savedDir = Dir::getPwd();
-    Dir::chDir(REPO);
     try
     {
-        File::createFile(configFileName);
+        initVerify();
+        Dir::mkDir(REPO);
+        File::createFile(configFileName, REPO);
     }
     catch(ErrorException& ex)
     {
         ex.what();
-        return REPO_ERROR;
+        return ERR_LOG("Initialize repository error.");;
     }
-    Dir::chDir(savedDir);
-
-    INFO_LOG("Initialize repository done.");
-    return REPO_SUCCESS;
+    return INFO_LOG("Initialize repository done.");
 }
 
 int Repository::createConfig()
@@ -46,7 +35,17 @@ int Repository::createConfig()
 
 bool Repository::isValid()
 {
-    return Dir::hasDir(REPO);
+    try
+    {
+        Dir::assertDir(REPO);
+    }
+    catch(ErrorException& ex)
+    {
+        ex.what();
+        return false;
+    }
+
+    return true;
 }
 
 void Repository::rmRepo()
@@ -54,33 +53,28 @@ void Repository::rmRepo()
     Dir::rmDir(REPO);
 }
 
-bool Repository::initVerify()
+void Repository::initVerify()
 {
-    return Dir::hasDir(DIR_CPU)
-        && Dir::hasDir(DIR_PUB)
-        && Dir::hasDir(DIR_SDR)
-        && Dir::hasDir(DIR_SPS);
+    Dir::assertDir(DIR_CPU);
+    Dir::assertDir(DIR_PUB);
+    Dir::assertDir(DIR_SDR);
+    Dir::assertDir(DIR_SPS);
 }
 
 int Repository::runGitCmd(std::string cmd, std::string runDir)
 {
     std::string gitCmd = "git " + cmd;
-    std::string savedDir = Dir::getPwd();
-
-    if (!runDir.empty())
+    try
     {
-        if (Dir::chDir(runDir) != REPO_SUCCESS)
-            return REPO_ERROR;
+        Run::cmd(gitCmd, runDir);
+    }
+    catch(ErrorException& ex)
+    {
+        ex.what();
+        return ERR_LOG("Run < " + gitCmd + " > error.");
     }
 
-    DBG_LOG("Run < " + gitCmd + " > ...");
-    int result = Run::cmd(gitCmd);
-    Dir::chDir(savedDir);
-
-    if (result != REPO_SUCCESS) return ERR_LOG("Run < " + gitCmd + " > error.");
-
-    INFO_LOG("Run < " + gitCmd + " > done.");
-    return result;
+    return INFO_LOG("Run < " + gitCmd + " > done.");
 }
 
 REPO_NS_END

@@ -8,22 +8,23 @@
 
 REPO_NS_BEGIN
 
-bool Dir::hasDir(std::string dir)
+void Dir::assertDir(std::string dir)
 {
-    if (access(dir.c_str(), F_OK) == REPO_SUCCESS) return true;
-
-    ERR_LOG("Cannot find dir : " + dir);
-    return false;
+    if (access(dir.c_str(), F_OK) == REPO_ERROR)
+        throw ErrorException("Can't find dir : " + dir);
 }
 
-int Dir::mkDir(std::string dir)
+void Dir::mkDir(std::string dir)
 {
-    std::string cmd = "mkdir -p " + dir;
-    if (Run::cmd(cmd) == REPO_SUCCESS)
-        return REPO_SUCCESS;
-
-    ERR_LOG("Cannot create dir : " + dir);
-    return REPO_ERROR;
+    try
+    {
+        Run::cmd("mkdir -p " + dir);
+    }
+    catch(ErrorException& ex)
+    {
+        ex.what();
+        throw ErrorException("Can't create dir : " + dir);
+    }
 }
 
 std::string Dir::getPwd()
@@ -35,21 +36,25 @@ std::string Dir::getPwd()
     return currentDir;
 }
 
-int Dir::chDir(std::string dir)
+void Dir::chDir(std::string dir)
 {
-    if (!hasDir(dir)) return REPO_ERROR;
+    assertDir(dir);
     DBG_LOG("Change dir to : " + dir);
-    if (chdir(dir.c_str()) == REPO_SUCCESS) return REPO_SUCCESS;
-    return REPO_ERROR;
+    if (chdir(dir.c_str()) == REPO_ERROR)
+        throw ErrorException("Can't find dir : " + dir);
 }
 
-int Dir::rmDir(std::string dir)
+void Dir::rmDir(std::string dir)
 {
-    std::string cmd = "rm -rf " + dir;
-    if (Run::cmd(cmd) == REPO_SUCCESS) return REPO_SUCCESS;
-
-    ERR_LOG("Cannot delete dir : " + dir);
-    return REPO_ERROR;
+    try
+    {
+        Run::cmd("rm -rf " + dir);
+    }
+    catch(ErrorException& ex)
+    {
+        ex.what();
+        throw ErrorException("Can't delete dir : " + dir);
+    }
 }
 
 REPO_NS_END

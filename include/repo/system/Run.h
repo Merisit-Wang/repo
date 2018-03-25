@@ -8,7 +8,7 @@ REPO_NS_BEGIN
 
 struct Run
 {
-    static int cmd(std::string cmd);
+    static void cmd(std::string cmd, std::string dir = "");
 };
 
 REPO_NS_END

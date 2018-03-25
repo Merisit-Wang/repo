@@ -23,7 +23,7 @@ struct Repository
     static int runGitCmd(std::string cmd, std::string runDir = "");
 
 private:
-    static bool initVerify();
+    static void initVerify();
     static int createConfig();
 };
 

@@ -9,11 +9,11 @@ REPO_NS_BEGIN
 
 struct Dir
 {
-    static bool hasDir(std::string dir);
-    static int mkDir(std::string dir);
+    static void assertDir(std::string dir);
+    static void mkDir(std::string dir);
     static std::string getPwd();
-    static int rmDir(std::string dir);
-    static int chDir(std::string dir);
+    static void rmDir(std::string dir);
+    static void chDir(std::string dir);
 };
 
 REPO_NS_END

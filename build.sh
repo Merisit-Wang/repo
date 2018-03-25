@@ -14,6 +14,7 @@ if [ "$arg" == "install" ]; then
     cmake ..
 else
     echo "build test"
+    rm -rf src/test/repo-test
     cmake .. -DENABLE_TEST=1
 fi
 
