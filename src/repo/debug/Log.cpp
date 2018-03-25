@@ -2,6 +2,7 @@
 #include "debug/error.h"
 
 #include <stdio.h>
+#include <exception>
 
 REPO_NS_BEGIN
 
@@ -26,7 +27,6 @@ int Log::warn(std::string log)
 
 int Log::err(std::string log)
 {
-    if (!logSwitchOn) return REPO_ERROR;
     printf("\033[1m\033[41;37mERROR\033[0m %s\n", log.c_str());
     return REPO_ERROR;
 }

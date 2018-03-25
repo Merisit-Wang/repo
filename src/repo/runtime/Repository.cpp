@@ -2,12 +2,13 @@
 #include "debug/Log.h"
 #include "system/Dir.h"
 #include "system/Run.h"
+#include "system/File.h"
 
 REPO_NS_BEGIN
 
 namespace
 {
-    static const std::string configFileName = "config";
+    static std::string configFileName = "config";
 }
 
 int Repository::init()
@@ -19,6 +20,19 @@ int Repository::init()
     }
 
     if (Dir::mkDir(REPO) != REPO_SUCCESS) return REPO_ERROR;
+
+    std::string savedDir = Dir::getPwd();
+    Dir::chDir(REPO);
+    try
+    {
+        File::createFile(configFileName);
+    }
+    catch(ErrorException& ex)
+    {
+        ex.what();
+        return REPO_ERROR;
+    }
+    Dir::chDir(savedDir);
 
     INFO_LOG("Initialize repository done.");
     return REPO_SUCCESS;

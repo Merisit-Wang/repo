@@ -21,6 +21,20 @@ struct Log
 #define ERR_LOG(log) Log::err(log)
 #define DBG_LOG(log) Log::dbg(log)
 
+struct ErrorException : public std::exception
+{
+    ErrorException(std::string message) : message(message) {}
+
+   const char* what()const throw()
+   {
+       ERR_LOG(message);
+       return "";
+   }
+
+private:
+   std::string message;
+};
+
 REPO_NS_END
 
 #endif
