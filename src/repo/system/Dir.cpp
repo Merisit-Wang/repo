@@ -1,5 +1,6 @@
 #include "system/Dir.h"
 #include "debug/Log.h"
+#include "system/Run.h"
 
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -18,7 +19,7 @@ bool Dir::hasDir(std::string dir)
 int Dir::mkDir(std::string dir)
 {
     std::string cmd = "mkdir -p " + dir;
-    if (system(cmd.c_str()) == REPO_SUCCESS)
+    if (Run::cmd(cmd) == REPO_SUCCESS)
         return REPO_SUCCESS;
 
     ERR_LOG("Cannot create dir : " + dir);
@@ -45,7 +46,7 @@ int Dir::chDir(std::string dir)
 int Dir::rmDir(std::string dir)
 {
     std::string cmd = "rm -rf " + dir;
-    if (system(cmd.c_str()) == REPO_SUCCESS) return REPO_SUCCESS;
+    if (Run::cmd(cmd) == REPO_SUCCESS) return REPO_SUCCESS;
 
     ERR_LOG("Cannot delete dir : " + dir);
     return REPO_ERROR;

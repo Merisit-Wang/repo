@@ -24,6 +24,7 @@ struct Repository
 
 private:
     static bool initVerify();
+    static int createConfig();
 };
 
 REPO_NS_END

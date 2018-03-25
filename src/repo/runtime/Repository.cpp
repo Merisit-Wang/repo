@@ -1,8 +1,14 @@
 #include "runtime/Repository.h"
 #include "debug/Log.h"
 #include "system/Dir.h"
+#include "system/Run.h"
 
 REPO_NS_BEGIN
+
+namespace
+{
+    static const std::string configFileName = "config";
+}
 
 int Repository::init()
 {
@@ -15,6 +21,12 @@ int Repository::init()
     if (Dir::mkDir(REPO) != REPO_SUCCESS) return REPO_ERROR;
 
     INFO_LOG("Initialize repository done.");
+    return REPO_SUCCESS;
+}
+
+int Repository::createConfig()
+{
+
     return REPO_SUCCESS;
 }
 
@@ -48,10 +60,10 @@ int Repository::runGitCmd(std::string cmd, std::string runDir)
     }
 
     DBG_LOG("Run < " + gitCmd + " > ...");
-    int result = system(gitCmd.c_str());
+    int result = Run::cmd(gitCmd);
     Dir::chDir(savedDir);
 
-    if (result != REPO_SUCCESS) ERR_LOG("Run < " + gitCmd + " > error.");
+    if (result != REPO_SUCCESS) return ERR_LOG("Run < " + gitCmd + " > error.");
 
     INFO_LOG("Run < " + gitCmd + " > done.");
     return result;
