@@ -14,6 +14,7 @@ FIXTURE(FtOptionAll)
     SETUP()
     {
         FtEnv::init();
+        REPO_RUN(createCmd("repo --init"));
     }
 
     TEARDOWN()
@@ -30,6 +31,14 @@ FIXTURE(FtOptionAll)
     {
         Dir::rmDir(DIR_SPS);
         ASSERT_THAT(REPO_RUN(createCmd("repo --all status")), is(-1));
+    }
+
+    TEST("should switch work dir to repo root")
+    {
+        std::string repoRoot = Dir::getPwd();
+        Dir::chDir(DIR_SPS);
+        REPO_RUN(createCmd("repo --all status"));
+        ASSERT_THAT(Dir::getPwd(), is(repoRoot));
     }
 };
 

@@ -6,6 +6,11 @@ USING_REPO_NS
 
 FTESTING_NS_BEGIN
 
+namespace
+{
+    static std::string testRoot = Dir::getPwd();
+}
+
 void FtEnv::init()
 {
     Dir::mkDir(DIR_CPU);
@@ -30,6 +35,7 @@ void FtEnv::clean()
     Dir::rmDir(DIR_SPS);
     Dir::rmDir(DIR_PROJECT);
     Dir::rmDir(DIR_BUILD);
+    Dir::chDir(testRoot);
 }
 
 FTESTING_NS_END

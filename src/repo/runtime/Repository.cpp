@@ -69,6 +69,19 @@ void Repository::initVerify()
     Dir::assertDir(DIR_SPS);
 }
 
+int Repository::changeWorkDirToRepoRoot()
+{
+    while(!Dir::isRootDir())
+    {
+        if (Dir::hasDir(Dir::getPwd() + DIR_REPO)) break;
+        Dir::chDir(Dir::getPwd() + "..");
+    }
+
+    if (Dir::isRootDir() || !isValid())
+        return ERR_LOG("Not a repository (or any of the parent directories) : .repo");
+    return REPO_SUCCESS;
+}
+
 int Repository::runGitCmd(std::string cmd, std::string runDir)
 {
     std::string gitCmd = "git " + cmd;
@@ -83,6 +96,24 @@ int Repository::runGitCmd(std::string cmd, std::string runDir)
     }
 
     return INFO_LOG("Run < " + gitCmd + " > done.");
+}
+
+int Repository::runWithAllDir(std::string gitCmd, bool hasExtendDir)
+{
+    if (changeWorkDirToRepoRoot() == REPO_ERROR) return REPO_ERROR;
+    int result;
+    result = runGitCmd(gitCmd, DIR_CPU);
+    result = runGitCmd(gitCmd, DIR_PUB);
+    result = runGitCmd(gitCmd, DIR_SDR);
+    result = runGitCmd(gitCmd, DIR_SPS);
+
+    if (hasExtendDir)
+    {
+        result = runGitCmd(gitCmd, DIR_PROJECT);
+        result = runGitCmd(gitCmd, DIR_BUILD);
+    }
+
+    return result;
 }
 
 REPO_NS_END

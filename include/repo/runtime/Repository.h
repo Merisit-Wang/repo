@@ -20,6 +20,8 @@ struct Repository
     static int init();
     static bool isValid();
     static void rmRepo();
+    static int changeWorkDirToRepoRoot();
+    static int runWithAllDir(std::string gitCmd, bool hasExtendDir = false);
     static int runGitCmd(std::string cmd, std::string runDir = "");
 
 private:

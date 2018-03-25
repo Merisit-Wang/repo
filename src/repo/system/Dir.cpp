@@ -14,6 +14,19 @@ void Dir::assertDir(std::string dir)
         throw ErrorException("Can't find dir : " + dir);
 }
 
+bool Dir::hasDir(std::string dir)
+{
+    try
+    {
+        assertDir(dir);
+    }
+    catch(ErrorException& ex)
+    {
+        return false;
+    }
+    return true;
+}
+
 void Dir::mkDir(std::string dir)
 {
     try
@@ -55,6 +68,11 @@ void Dir::rmDir(std::string dir)
         ex.what();
         throw ErrorException("Can't delete dir : " + dir);
     }
+}
+
+bool Dir::isRootDir()
+{
+    return getPwd() == "//";
 }
 
 REPO_NS_END
